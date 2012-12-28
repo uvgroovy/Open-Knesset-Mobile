@@ -31,11 +31,11 @@ Ext.reg('PartyView', OKnesset.app.views.PartyView);
 OKnesset.app.views.PartyView.MemberList = new Ext.extend(Ext.List, {
 	id : 'MemberList',
 	flex : 5,
-	itemTpl :  new Ext.XTemplate('<div class="{[this.side(values.party_id)]}">{#} {name}</div>',    
+	itemTpl :  new Ext.XTemplate('<div class="{[this.classes(values.party_id)]}">{#} {name}</div>',    
 	    {
 			compiled: true,    		
-    		side : function(partyId){
-    			return OKnesset.app.controllers.Party.isInCoalitionById(partyId) ? "coalition":"opposition";
+    		classes : function(partyId){
+               return  OKnesset.app.controllers.Party.getPartyClasses(partyId);
     		}
     	}
 	),

@@ -4,16 +4,16 @@ OKnesset.app.views.AgendaMembersSupportListView = new Ext.extend(Ext.List, {
     store: OKnesset.AgendaMembersSupportListStore,
     //grouped: true,
 
-    itemTpl :  new Ext.XTemplate('<div class="memberName {[this.side(values.absolute_url)]}">{name}<div class="supportSize">{score}%</div></div>',
+    itemTpl :  new Ext.XTemplate('<div class="memberName {[this.classes(values.absolute_url)]}">{name}<div class="supportSize">{score}%</div></div>',
         {
             compiled: true,    		
-            side : function(absolute_url){
+            classes : function(absolute_url){
                 var partyId = OKnesset.app.controllers.Member.getPartyIdFromAbsoluteUrl(absolute_url);
                 
                if (typeof partyId === "undefined") {
                    return "";
                }
-                return OKnesset.app.controllers.Party.isInCoalitionById(partyId) ? "coalition":"opposition";
+               return  OKnesset.app.controllers.Party.getPartyClasses(partyId);
             }
         }
 	),

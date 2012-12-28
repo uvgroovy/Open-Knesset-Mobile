@@ -22,7 +22,7 @@ OKnesset.app.views.MemberListView.List = new Ext.extend(Ext.List, {
     store: OKnesset.MemberStore,
     grouped: true,
     flex: 1,
-    itemTpl: new Ext.XTemplate('<div class="{[this.side(values.party_id)]}">{name}<div class="partySize" style="font-size:80%">{[this.partyName(values.party_id)]}</div></div>', 
+    itemTpl: new Ext.XTemplate('<div class="{[this.classes(values.party_id)]}">{name}<div class="partySize" style="font-size:80%">{[this.partyName(values.party_id)]}</div></div>', 
     	{
 			compiled: true,    		
     		partyName : function(partyId){
@@ -30,9 +30,9 @@ OKnesset.app.views.MemberListView.List = new Ext.extend(Ext.List, {
     		}
     	},
     	{
-			compiled: true,    		
+			classes: true,    		
     		side : function(partyId){
-    			return OKnesset.app.controllers.Party.isInCoalitionById(partyId) ? "coalition":"opposition";
+               return  OKnesset.app.controllers.Party.getPartyClasses(partyId);
     		}
     	}
     	

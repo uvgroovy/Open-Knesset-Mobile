@@ -50,16 +50,16 @@ Ext.reg('CommitteeDetailsView', OKnesset.app.views.CommitteeDetailsView);
 OKnesset.app.views.CommitteeDetailsView.committeeMembersList = new Ext.extend(Ext.List, {
     id: 'CommitteeMembersList',
     //itemTpl: '<div>{name}</div><div class="Votescounters">'+ OKnesset.strings.presence +'{presence}%</div>',
-    itemTpl :  new Ext.XTemplate('<div class="{[this.side(values.url)]}">{name}</div><div class="Votescounters">'+ OKnesset.strings.presence +'{presence}%</div>',
+    itemTpl :  new Ext.XTemplate('<div class="{[this.classes(values.url)]}">{name}</div><div class="Votescounters">'+ OKnesset.strings.presence +'{presence}%</div>',
         {
             compiled: true,    		
-            side : function(absolute_url){
+            classes : function(absolute_url){
                 var partyId = OKnesset.app.controllers.Member.getPartyIdFromAbsoluteUrl(absolute_url);
                 
                if (typeof partyId === "undefined") {
                    return "";
                }
-                return OKnesset.app.controllers.Party.isInCoalitionById(partyId) ? "coalition":"opposition";
+               return  OKnesset.app.controllers.Party.getPartyClasses(partyId);
             }
         }
 	),

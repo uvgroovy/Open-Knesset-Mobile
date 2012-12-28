@@ -76,6 +76,11 @@ OKnesset.app.controllers.Party = Ext.regController('Party', {
 		return party.data.is_coalition;
 	},
 
+	getPartyClasses : function(partyId){
+		return  "party-"+partyId + " " +this.isInCoalitionById(partyId) ? "coalition":"opposition";
+  
+	},
+
 	filterMembersByParty : function(party) {
 		OKnesset.MemberStore.clearFilter(true);
 		OKnesset.MemberStore.filter({
