@@ -30,8 +30,8 @@ OKnesset.app.views.MemberListView.List = new Ext.extend(Ext.List, {
     		}
     	},
     	{
-			classes: true,    		
-    		side : function(partyId){
+		compiled: true,    		
+    		classes : function(partyId){
                return  OKnesset.app.controllers.Party.getPartyClasses(partyId);
     		}
     	}
