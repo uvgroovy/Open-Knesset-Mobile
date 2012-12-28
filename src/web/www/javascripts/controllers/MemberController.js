@@ -162,6 +162,16 @@ OKnesset.app.controllers.Member = Ext.regController('Member', {
 		var sub1 = url.substr("/member/".length);
 		return sub1.substr(0,sub1.indexOf('/'));
 	},
+    
+	getPartyIdFromAbsoluteUrl: function(url){
+		var memId = this.getIdFromAbsoluteUrl(url); 
+		var member = getMembersById(memId)[0];
+		if (typeof member ==="undefined") {
+		    return;
+		}
+		
+		return member.party_id;
+	},
 
 	refresh: function(){
 		// get current member data from Party store, which is updated
