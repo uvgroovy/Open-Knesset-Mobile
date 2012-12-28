@@ -221,3 +221,10 @@ div.subtitlePanel {
 #backBtn > img {
 	width: 23px;
 }
+
+.coalition {
+ color : green;   
+}
+.opposition {
+ color : red;   
+}

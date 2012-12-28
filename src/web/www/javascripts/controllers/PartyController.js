@@ -66,6 +66,15 @@ OKnesset.app.controllers.Party = Ext.regController('Party', {
 		
 		return party.data.name;
 	},
+	isInCoalitionById : function(partyId){
+		var party = getObjectFromStoreByID(OKnesset.PartyStore, partyId);
+		if (typeof party === 'undefined') {
+			OKnesset.log("Cannot find party from id '" + partyId + "'");
+			return "";
+		}
+		
+		return party.data.is_coalition;
+	},
 
 	filterMembersByParty : function(party) {
 		OKnesset.MemberStore.clearFilter(true);

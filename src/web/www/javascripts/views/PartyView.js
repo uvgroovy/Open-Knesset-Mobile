@@ -1,3 +1,4 @@
+
 /**
  * The Member list panel (בנימין נתניהו, גדעון סער) shows a list of members
  * of the current selected party
@@ -30,7 +31,14 @@ Ext.reg('PartyView', OKnesset.app.views.PartyView);
 OKnesset.app.views.PartyView.MemberList = new Ext.extend(Ext.List, {
 	id : 'MemberList',
 	flex : 5,
-	itemTpl : '<div>{#} {name}</div>',
+	itemTpl :  new Ext.XTemplate('<div class="{[this.side(values.party_id)]}">{#} {name}</div>',    
+	    {
+			compiled: true,    		
+    		side : function(partyId){
+    			return OKnesset.app.controllers.Party.isInCoalitionById(partyId) ? "coalition":"opposition";
+    		}
+    	}
+	),
 	scroll: false,
 	store : OKnesset.MemberStore,
 	onItemDisclosure : true
@@ -50,3 +58,5 @@ OKnesset.app.views.PartyView.MiniInfo = new Ext.extend(Ext.Panel, {
 		new OKnesset.app.views.PartyView.MiniText()
 	]
 });
+
+
